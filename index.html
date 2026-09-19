@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter CVI aux contacts</title>
+</head>
+
+<body>
+<script>
+const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:CVI - Création & Valorisation Immobilière
+N:;CVI - Création & Valorisation Immobilière;;;
+ORG:CVI - Création & Valorisation Immobilière
+TITLE:SAS - Marchand de biens
+item1.TEL;TYPE=CELL:+33637042736
+item1.X-ABLabel:Mathieu CREVEL
+item2.TEL;TYPE=CELL:+33644151417
+item2.X-ABLabel:Jimmy VIRMOUX
+EMAIL;TYPE=INTERNET,WORK:contact.cvi91@gmail.com
+URL:https://www.cvi-immobilier.fr/
+NOTE:Mathieu CREVEL : 06 37 04 27 36\\nJimmy VIRMOUX : 06 44 15 14 17\\nInstagram : CVI_Immobilier_91\\nFacebook : CVI Immobilier 91\\nSite : www.cvi-immobilier.fr
+END:VCARD`;
+
+function downloadVCard() {
+  const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "CVI_Ajouter_aux_contacts.vcf";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+window.addEventListener("load", downloadVCard);
+</script>
+
+<div style="font-family:Arial,sans-serif;text-align:center;padding:40px 20px;">
+  <h2>CVI - Création & Valorisation Immobilière</h2>
+  <p>Si le téléchargement ne démarre pas automatiquement :</p>
+  <button
+    onclick="downloadVCard()"
+    style="padding:14px 22px;font-size:16px;cursor:pointer;">
+    Ajouter CVI aux contacts
+  </button>
+</div>
+</body>
+</html>
